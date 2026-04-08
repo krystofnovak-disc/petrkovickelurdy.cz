@@ -29,7 +29,7 @@
     "en": "A family-run stellplatz on the edge of Petřkovice village near Starý Jičín, offering a peaceful spot for motorhomes and caravans. Level parking with beautiful sunset views, electricity hookup, fresh water, and grey/black water disposal."
   },
   "phone": "+420 603 540 643",
-  "maintenance_mode": true,
+  "maintenance_mode": false,
   "gps_lng": 17.9556,
   "gallery": [],
   "directions": {
