@@ -1,0 +1,31 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import settings from '../content/settings.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="cenik" class="py-20 bg-bg">
+  <div class="max-w-2xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">{t('pricing.title')}</h2>
+
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+      <table class="w-full">
+        <tbody>
+          {settings.pricing.map((item, i) => (
+            <tr class={i < settings.pricing.length - 1 ? 'border-b border-bg' : ''}>
+              <td class="px-6 py-4 text-text font-medium">{item[lang]}</td>
+              <td class="px-6 py-4 text-right text-primary font-semibold">{item.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

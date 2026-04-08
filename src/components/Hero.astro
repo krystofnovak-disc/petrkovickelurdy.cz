@@ -1,0 +1,46 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import settings from '../content/settings.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const hero = settings.hero[lang];
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary-dark/70 to-secondary/60"></div>
+  <div class="absolute inset-0 bg-[url('/images/hero-placeholder.svg')] bg-cover bg-center opacity-20"></div>
+
+  <div class="relative z-10 text-center px-4 max-w-3xl">
+    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+      {hero.title}
+    </h1>
+    <p class="text-xl md:text-2xl text-white/90 mb-8 drop-shadow">
+      {hero.subtitle}
+    </p>
+    <a
+      href="#rezervace"
+      class="inline-block bg-white text-primary font-semibold px-8 py-3 rounded-lg text-lg hover:bg-bg transition-colors shadow-lg"
+    >
+      {t('hero.cta')}
+    </a>
+
+    <div class="mt-8 inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+      </svg>
+      GPS: {settings.gps}
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: cs
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: settings
+    label: "Nastavení webu"
+    files:
+      - name: site-settings
+        label: "Hlavní nastavení"
+        file: src/content/settings.json
+        fields:
+          - { name: site_name, label: "Název webu", widget: string }
+          - { name: gps, label: "GPS souřadnice", widget: string }
+          - { name: phone, label: "Telefon", widget: string }
+          - { name: email, label: "E-mail", widget: string }
+          - name: address
+            label: "Adresa"
+            widget: object
+            fields:
+              - { name: line1, label: "Obec", widget: string }
+              - { name: zip, label: "PSČ", widget: string }
+          - name: hero
+            label: "Hero sekce"
+            widget: object
+            fields:
+              - name: cs
+                label: "Česky"
+                widget: object
+                fields:
+                  - { name: title, label: "Nadpis", widget: string }
+                  - { name: subtitle, label: "Podnadpis", widget: string }
+              - name: en
+                label: "English"
+                widget: object
+                fields:
+                  - { name: title, label: "Title", widget: string }
+                  - { name: subtitle, label: "Subtitle", widget: string }
+          - name: about
+            label: "O nás"
+            widget: object
+            fields:
+              - { name: cs, label: "Česky", widget: text }
+              - { name: en, label: "English", widget: text }
+          - name: directions
+            label: "Příjezdová trasa"
+            widget: object
+            fields:
+              - { name: cs, label: "Česky", widget: text }
+              - { name: en, label: "English", widget: text }
+          - name: pricing
+            label: "Ceník"
+            widget: list
+            fields:
+              - { name: cs, label: "Služba (česky)", widget: string }
+              - { name: en, label: "Service (english)", widget: string }
+              - { name: price, label: "Cena", widget: string }
+
+  - name: trips-cs
+    label: "Výlety (česky)"
+    folder: src/content/trips/cs
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: "Název", widget: string }
+      - { name: description, label: "Popis", widget: text }
+      - { name: distance, label: "Vzdálenost", widget: string }
+      - { name: category, label: "Kategorie", widget: select, options: ["kultura", "příroda", "cyklo", "gastro", "rodiny"] }
+      - { name: order, label: "Pořadí", widget: number, value_type: int }
+      - { name: image, label: "Fotka", widget: image, required: false }
+
+  - name: trips-en
+    label: "Trips (English)"
+    folder: src/content/trips/en
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: "Title", widget: string }
+      - { name: description, label: "Description", widget: text }
+      - { name: distance, label: "Distance", widget: string }
+      - { name: category, label: "Category", widget: select, options: ["culture", "nature", "cycling", "gastro", "families"] }
+      - { name: order, label: "Order", widget: number, value_type: int }
+      - { name: image, label: "Photo", widget: image, required: false }

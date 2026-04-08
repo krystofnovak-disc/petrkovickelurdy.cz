@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lang = 'cs' as const;
+---
+
+<Layout title="Provozní řád">
+  <div class="pt-24 pb-20 max-w-3xl mx-auto px-4">
+    <h1 class="text-3xl md:text-4xl font-bold mb-8">Provozní řád Stellplatzu Petřkovice u Lurdy</h1>
+
+    <div class="prose prose-lg max-w-none space-y-6 text-text">
+      <p class="text-text-light italic">Parkoviště pro obytné vozy a karavany</p>
+
+      <h2 class="text-xl font-semibold mt-8">1. Obecná pravidla</h2>
+      <ul class="list-disc pl-6 space-y-2 text-text-light">
+        <li>Stellplatz je určen výhradně pro obytné vozy a karavany.</li>
+        <li>Při příjezdu je host povinen se zaregistrovat a vyplnit ubytovací kartu.</li>
+        <li>Maximální doba pobytu je 3 noci, pokud není dohodnuto jinak.</li>
+        <li>Noční klid platí od 22:00 do 7:00 hodin.</li>
+        <li>Každý host je povinen udržovat čistotu a pořádek na svém stanovišti i ve společných prostorách.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold mt-8">2. Příjezd a odjezd</h2>
+      <ul class="list-disc pl-6 space-y-2 text-text-light">
+        <li>Check-in: od 14:00 hodin.</li>
+        <li>Check-out: do 12:00 hodin.</li>
+        <li>Při odjezdu je nutné uvést stanoviště do původního stavu.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold mt-8">3. Služby a vybavení</h2>
+      <ul class="list-disc pl-6 space-y-2 text-text-light">
+        <li>Elektřina 230V — připojení dle pokynů provozovatele.</li>
+        <li>Pitná voda — k dispozici na výdejním místě.</li>
+        <li>Šedá voda — vypouštění na označeném místě.</li>
+        <li>Černá voda (chemické WC) — vypouštění na označeném místě.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold mt-8">4. Platba</h2>
+      <ul class="list-disc pl-6 space-y-2 text-text-light">
+        <li>Platba za pobyt je splatná při příjezdu nebo dle dohody s provozovatelem.</li>
+        <li>Aktuální ceník je k dispozici na webových stránkách a u vstupu na stellplatz.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold mt-8">5. Bezpečnost</h2>
+      <ul class="list-disc pl-6 space-y-2 text-text-light">
+        <li>Rozdělávání ohňů je povoleno pouze na určeném místě.</li>
+        <li>Domácí mazlíčci jsou vítáni, musí být pod kontrolou majitele.</li>
+        <li>Provozovatel neodpovídá za škody na majetku hostů.</li>
+        <li>V případě poruchy nebo nehody kontaktujte provozovatele.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold mt-8">6. Kontakt na provozovatele</h2>
+      <p class="text-text-light">
+        Telefon: <a href="tel:+420000000000" class="text-primary hover:text-primary-dark">+420 000 000 000</a><br />
+        E-mail: <a href="mailto:info@petrkovickelurdy.cz" class="text-primary hover:text-primary-dark">info@petrkovickelurdy.cz</a>
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <a href="/" class="text-primary hover:text-primary-dark transition-colors">&larr; Zpět na hlavní stránku</a>
+    </div>
+  </div>
+</Layout>

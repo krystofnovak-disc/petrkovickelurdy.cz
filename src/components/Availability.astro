@@ -1,0 +1,134 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const dayNames = lang === 'cs'
+  ? ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne']
+  : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+const monthNames = lang === 'cs'
+  ? ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec']
+  : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+---
+
+<section id="obsazenost" class="py-20 bg-white">
+  <div class="max-w-2xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">{t('availability.title')}</h2>
+
+    <div class="flex items-center justify-center gap-6 mb-8 text-sm">
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-4 rounded bg-available/20 border border-available"></span>
+        {t('availability.available')}
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-4 rounded bg-occupied/20 border border-occupied"></span>
+        {t('availability.occupied')}
+      </div>
+    </div>
+
+    <!-- Calendar container -->
+    <div id="availability-calendar" class="bg-bg rounded-xl p-6" data-lang={lang}>
+      <!-- Month navigation -->
+      <div class="flex items-center justify-between mb-4">
+        <button id="cal-prev" class="p-2 hover:bg-white rounded-lg transition-colors" aria-label="Previous month">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <h3 id="cal-month-label" class="font-semibold text-lg"></h3>
+        <button id="cal-next" class="p-2 hover:bg-white rounded-lg transition-colors" aria-label="Next month">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Day headers -->
+      <div class="grid grid-cols-7 gap-1 mb-2">
+        {dayNames.map(day => (
+          <div class="text-center text-xs font-medium text-text-light py-1">{day}</div>
+        ))}
+      </div>
+
+      <!-- Days grid (filled by JS) -->
+      <div id="cal-days" class="grid grid-cols-7 gap-1"></div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ monthNames }}>
+  const calEl = document.getElementById('availability-calendar');
+  const daysEl = document.getElementById('cal-days');
+  const labelEl = document.getElementById('cal-month-label');
+  const prevBtn = document.getElementById('cal-prev');
+  const nextBtn = document.getElementById('cal-next');
+
+  let currentDate = new Date();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+
+  // For now, all days are shown as available.
+  // TODO: Integrate with Google Calendar API via Netlify Function
+  const occupiedDates = new Set();
+
+  function renderCalendar() {
+    if (!daysEl || !labelEl) return;
+
+    labelEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    // Monday-based: 0=Mon, 6=Sun
+    let startDay = firstDay.getDay() - 1;
+    if (startDay < 0) startDay = 6;
+
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    const today = new Date();
+
+    let html = '';
+
+    // Empty cells before first day
+    for (let i = 0; i < startDay; i++) {
+      html += '<div></div>';
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      const isOccupied = occupiedDates.has(dateStr);
+      const isPast = new Date(currentYear, currentMonth, day) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+      let classes = 'aspect-square flex items-center justify-center rounded-lg text-sm ';
+      if (isPast) {
+        classes += 'text-text-light/40 bg-white/50';
+      } else if (isOccupied) {
+        classes += 'bg-occupied/20 text-occupied font-medium';
+      } else {
+        classes += 'bg-available/15 text-text hover:bg-available/30 transition-colors';
+      }
+
+      html += `<div class="${classes}">${day}</div>`;
+    }
+
+    daysEl.innerHTML = html;
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    currentMonth--;
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+    renderCalendar();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    currentMonth++;
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+    renderCalendar();
+  });
+
+  renderCalendar();
+</script>

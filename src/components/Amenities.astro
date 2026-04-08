@@ -1,0 +1,62 @@
+---
+import type { Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/ui';
+import settings from '../content/settings.json';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const amenities = [
+  {
+    icon: '⚡',
+    title: t('amenities.electricity'),
+    description: t('amenities.electricity.desc'),
+  },
+  {
+    icon: '💧',
+    title: t('amenities.water'),
+    description: t('amenities.water.desc'),
+  },
+  {
+    icon: '🚿',
+    title: t('amenities.greywater'),
+    description: t('amenities.greywater.desc'),
+  },
+  {
+    icon: '🚽',
+    title: t('amenities.blackwater'),
+    description: t('amenities.blackwater.desc'),
+  },
+  {
+    icon: '🅿️',
+    title: t('amenities.parking'),
+    description: t('amenities.parking.desc'),
+  },
+  {
+    icon: '🏔️',
+    title: t('amenities.view'),
+    description: t('amenities.view.desc'),
+  },
+];
+---
+
+<section id="vybaveni" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">{t('amenities.title')}</h2>
+    <p class="text-text-light text-center mb-12 max-w-2xl mx-auto">{settings.about[lang]}</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {amenities.map(amenity => (
+        <div class="bg-bg rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+          <div class="text-4xl mb-3">{amenity.icon}</div>
+          <h3 class="text-lg font-semibold mb-2">{amenity.title}</h3>
+          <p class="text-text-light text-sm">{amenity.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

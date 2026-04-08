@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Amenities from '../components/Amenities.astro';
+import Pricing from '../components/Pricing.astro';
+import Gallery from '../components/Gallery.astro';
+import Availability from '../components/Availability.astro';
+import ReservationForm from '../components/ReservationForm.astro';
+import Trips from '../components/Trips.astro';
+import Map from '../components/Map.astro';
+
+const lang = 'cs' as const;
+---
+
+<Layout>
+  <Hero lang={lang} />
+  <Amenities lang={lang} />
+  <Pricing lang={lang} />
+  <Gallery lang={lang} />
+  <Availability lang={lang} />
+  <ReservationForm lang={lang} />
+  <Trips lang={lang} />
+  <Map lang={lang} />
+</Layout>

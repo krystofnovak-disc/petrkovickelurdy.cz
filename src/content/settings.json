@@ -1,0 +1,34 @@
+{
+  "site_name": "Stellplatz Petřkovice u Lurdy",
+  "gps": "49.5833° N, 17.9667° E",
+  "phone": "+420 000 000 000",
+  "email": "info@petrkovickelurdy.cz",
+  "address": {
+    "line1": "Petřkovice u Starého Jičína",
+    "zip": "742 31"
+  },
+  "hero": {
+    "cs": {
+      "title": "Stellplatz Petřkovice u Lurdy",
+      "subtitle": "Klidné parkování pro obytné vozy s výhledem na Beskydy"
+    },
+    "en": {
+      "title": "Stellplatz Petřkovice u Lurdy",
+      "subtitle": "Peaceful motorhome parking with Beskydy mountain views"
+    }
+  },
+  "about": {
+    "cs": "Rodinný stellplatz na okraji obce Petřkovice u Starého Jičína nabízí klidné místo pro obytné vozy a karavany. Rovné stání s krásným výhledem na panorama Beskyd, možnost připojení k elektřině, napuštění vody a vypuštění šedé i černé vody.",
+    "en": "A family-run stellplatz on the edge of Petřkovice village near Starý Jičín, offering a peaceful spot for motorhomes and caravans. Level parking with beautiful Beskydy mountain panorama, electricity hookup, fresh water, and grey/black water disposal."
+  },
+  "directions": {
+    "cs": "Z Nového Jičína směr Starý Jičín, v Petřkovicích odbočte dle navigace k stellplatzu.",
+    "en": "From Nový Jičín head towards Starý Jičín, in Petřkovice follow your GPS to the stellplatz."
+  },
+  "pricing": [
+    { "cs": "Stání / noc", "en": "Parking / night", "price": "300 Kč" },
+    { "cs": "Elektřina", "en": "Electricity", "price": "100 Kč" },
+    { "cs": "Voda", "en": "Water", "price": "v ceně / included" },
+    { "cs": "Vypuštění odpadní vody", "en": "Waste water disposal", "price": "v ceně / included" }
+  ]
+}
