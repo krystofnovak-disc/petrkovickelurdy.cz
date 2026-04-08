@@ -18,12 +18,12 @@ const pageDescription = description ?? t('hero.subtitle');
 
 const allNavItems = [
   { href: '#vybaveni', label: t('nav.amenities'), hideInMaintenance: false },
-  { href: '#cenik', label: t('nav.pricing'), hideInMaintenance: false },
+  { href: '#cenik', label: t('nav.pricing'), hideInMaintenance: true },
   { href: '#galerie', label: t('nav.gallery'), hideInMaintenance: false },
   { href: '#obsazenost', label: t('nav.availability'), hideInMaintenance: true },
   { href: '#rezervace', label: t('nav.reservation'), hideInMaintenance: true },
   { href: '#vylety', label: t('nav.trips'), hideInMaintenance: false },
-  { href: '#kontakt', label: t('nav.contact'), hideInMaintenance: false },
+  { href: '#kontakt', label: t('nav.contact'), hideInMaintenance: true },
 ];
 const navItems = settings.maintenance_mode
   ? allNavItems.filter(i => !i.hideInMaintenance)

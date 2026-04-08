@@ -9,8 +9,10 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const isMaintenanceMode = settings.maintenance_mode;
 ---
 
+{!isMaintenanceMode && (
 <section id="cenik" class="py-20 bg-bg">
   <div class="max-w-2xl mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">{t('pricing.title')}</h2>
@@ -29,3 +31,4 @@ const t = useTranslations(lang);
     </div>
   </div>
 </section>
+)}
