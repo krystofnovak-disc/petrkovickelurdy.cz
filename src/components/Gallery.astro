@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/ui';
+import settings from '../content/settings.json';
 
 interface Props {
   lang: Lang;
@@ -8,25 +9,40 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const photos = settings.gallery || [];
+const hasPhotos = photos.length > 0;
 ---
 
 <section id="galerie" class="py-20 bg-white">
   <div class="max-w-6xl mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">{t('gallery.title')}</h2>
 
-    <!-- Placeholder grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {[1, 2, 3, 4, 5, 6].map(i => (
-        <div class="aspect-[4/3] bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center">
-          <div class="text-center text-text-light">
-            <svg class="w-12 h-12 mx-auto mb-2 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
-          </div>
+    {hasPhotos ? (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {photos.map((photo: { image: string; alt?: string }) => (
+          <a href={photo.image} target="_blank" rel="noopener" class="group block aspect-[4/3] rounded-xl overflow-hidden">
+            <img
+              src={photo.image}
+              alt={photo.alt || 'Stellplatz Petřkovice'}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </a>
+        ))}
+      </div>
+    ) : (
+      <>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[1, 2, 3, 4, 5, 6].map(() => (
+            <div class="aspect-[4/3] bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl flex items-center justify-center">
+              <svg class="w-12 h-12 opacity-30 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-
-    <p class="text-center text-text-light mt-8 italic">{t('gallery.coming')}</p>
+        <p class="text-center text-text-light mt-8 italic">{t('gallery.coming')}</p>
+      </>
+    )}
   </div>
 </section>

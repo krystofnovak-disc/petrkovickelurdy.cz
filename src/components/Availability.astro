@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../i18n/ui';
 import { useTranslations } from '../i18n/ui';
+import settings from '../content/settings.json';
 
 interface Props {
   lang: Lang;
@@ -8,6 +9,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const isMaintenanceMode = settings.maintenance_mode;
 
 const dayNames = lang === 'cs'
   ? ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne']
@@ -18,6 +20,7 @@ const monthNames = lang === 'cs'
   : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 ---
 
+{!isMaintenanceMode && (
 <section id="obsazenost" class="py-20 bg-white">
   <div class="max-w-2xl mx-auto px-4">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">{t('availability.title')}</h2>
@@ -33,9 +36,7 @@ const monthNames = lang === 'cs'
       </div>
     </div>
 
-    <!-- Calendar container -->
     <div id="availability-calendar" class="bg-bg rounded-xl p-6" data-lang={lang}>
-      <!-- Month navigation -->
       <div class="flex items-center justify-between mb-4">
         <button id="cal-prev" class="p-2 hover:bg-white rounded-lg transition-colors" aria-label="Previous month">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,33 +51,46 @@ const monthNames = lang === 'cs'
         </button>
       </div>
 
-      <!-- Day headers -->
       <div class="grid grid-cols-7 gap-1 mb-2">
         {dayNames.map(day => (
           <div class="text-center text-xs font-medium text-text-light py-1">{day}</div>
         ))}
       </div>
 
-      <!-- Days grid (filled by JS) -->
       <div id="cal-days" class="grid grid-cols-7 gap-1"></div>
+
+      <p id="cal-loading" class="text-center text-text-light text-sm mt-4">
+        {lang === 'cs' ? 'Načítám obsazenost...' : 'Loading availability...'}
+      </p>
     </div>
   </div>
 </section>
+)}
 
 <script define:vars={{ monthNames }}>
-  const calEl = document.getElementById('availability-calendar');
   const daysEl = document.getElementById('cal-days');
   const labelEl = document.getElementById('cal-month-label');
   const prevBtn = document.getElementById('cal-prev');
   const nextBtn = document.getElementById('cal-next');
+  const loadingEl = document.getElementById('cal-loading');
 
-  let currentDate = new Date();
-  let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();
+  let currentMonth = new Date().getMonth();
+  let currentYear = new Date().getFullYear();
+  let occupiedDates = new Set();
 
-  // For now, all days are shown as available.
-  // TODO: Integrate with Google Calendar API via Netlify Function
-  const occupiedDates = new Set();
+  async function fetchOccupied() {
+    try {
+      const res = await fetch('/.netlify/functions/calendar');
+      if (res.ok) {
+        const data = await res.json();
+        occupiedDates = new Set(data.occupied || []);
+      }
+    } catch {
+      // Calendar not configured yet — show all as available
+    }
+    if (loadingEl) loadingEl.style.display = 'none';
+    renderCalendar();
+  }
 
   function renderCalendar() {
     if (!daysEl || !labelEl) return;
@@ -84,7 +98,6 @@ const monthNames = lang === 'cs'
     labelEl.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
     const firstDay = new Date(currentYear, currentMonth, 1);
-    // Monday-based: 0=Mon, 6=Sun
     let startDay = firstDay.getDay() - 1;
     if (startDay < 0) startDay = 6;
 
@@ -93,7 +106,6 @@ const monthNames = lang === 'cs'
 
     let html = '';
 
-    // Empty cells before first day
     for (let i = 0; i < startDay; i++) {
       html += '<div></div>';
     }
@@ -130,5 +142,5 @@ const monthNames = lang === 'cs'
     renderCalendar();
   });
 
-  renderCalendar();
+  fetchOccupied();
 </script>

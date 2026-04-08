@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { getLangFromUrl, useTranslations, getLocalizedPath, languages } from '../i18n/ui';
 import type { Lang } from '../i18n/ui';
+import settings from '../content/settings.json';
 
 interface Props {
   title?: string;
@@ -15,15 +16,18 @@ const { title, description } = Astro.props;
 const pageTitle = title ? `${title} | Stellplatz Petřkovice` : 'Stellplatz Petřkovice u Lurdy';
 const pageDescription = description ?? t('hero.subtitle');
 
-const navItems = [
-  { href: '#vybaveni', label: t('nav.amenities') },
-  { href: '#cenik', label: t('nav.pricing') },
-  { href: '#galerie', label: t('nav.gallery') },
-  { href: '#obsazenost', label: t('nav.availability') },
-  { href: '#rezervace', label: t('nav.reservation') },
-  { href: '#vylety', label: t('nav.trips') },
-  { href: '#kontakt', label: t('nav.contact') },
+const allNavItems = [
+  { href: '#vybaveni', label: t('nav.amenities'), hideInMaintenance: false },
+  { href: '#cenik', label: t('nav.pricing'), hideInMaintenance: false },
+  { href: '#galerie', label: t('nav.gallery'), hideInMaintenance: false },
+  { href: '#obsazenost', label: t('nav.availability'), hideInMaintenance: true },
+  { href: '#rezervace', label: t('nav.reservation'), hideInMaintenance: true },
+  { href: '#vylety', label: t('nav.trips'), hideInMaintenance: false },
+  { href: '#kontakt', label: t('nav.contact'), hideInMaintenance: false },
 ];
+const navItems = settings.maintenance_mode
+  ? allNavItems.filter(i => !i.hideInMaintenance)
+  : allNavItems;
 
 const otherLang = lang === 'cs' ? 'en' : 'cs';
 const otherLangLabel = languages[otherLang];

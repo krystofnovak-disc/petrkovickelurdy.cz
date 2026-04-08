@@ -10,25 +10,46 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const hero = settings.hero[lang];
+const hasImage = settings.hero.image && settings.hero.image.length > 0;
 ---
 
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary-dark/70 to-secondary/60"></div>
-  <div class="absolute inset-0 bg-[url('/images/hero-placeholder.svg')] bg-cover bg-center opacity-20"></div>
+  {hasImage ? (
+    <div class="absolute inset-0">
+      <img src={settings.hero.image} alt={hero.title} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+  ) : (
+    <>
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary-dark/70 to-secondary/60"></div>
+    </>
+  )}
 
   <div class="relative z-10 text-center px-4 max-w-3xl">
+    {settings.maintenance_mode && (
+      <div class="mb-6 inline-flex items-center gap-2 bg-secondary/80 backdrop-blur-sm text-white px-5 py-2 rounded-full text-sm font-medium">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        {lang === 'cs' ? 'Stellplatz se připravuje' : 'Stellplatz is being prepared'}
+      </div>
+    )}
+
     <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
       {hero.title}
     </h1>
     <p class="text-xl md:text-2xl text-white/90 mb-8 drop-shadow">
       {hero.subtitle}
     </p>
-    <a
-      href="#rezervace"
-      class="inline-block bg-white text-primary font-semibold px-8 py-3 rounded-lg text-lg hover:bg-bg transition-colors shadow-lg"
-    >
-      {t('hero.cta')}
-    </a>
+
+    {!settings.maintenance_mode && (
+      <a
+        href="#rezervace"
+        class="inline-block bg-white text-primary font-semibold px-8 py-3 rounded-lg text-lg hover:bg-bg transition-colors shadow-lg"
+      >
+        {t('hero.cta')}
+      </a>
+    )}
 
     <div class="mt-8 inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

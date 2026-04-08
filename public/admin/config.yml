@@ -16,9 +16,12 @@ collections:
         file: src/content/settings.json
         fields:
           - { name: site_name, label: "Název webu", widget: string }
-          - { name: gps, label: "GPS souřadnice", widget: string }
+          - { name: gps, label: "GPS souřadnice (text)", widget: string }
+          - { name: gps_lat, label: "GPS latitude (číslo)", widget: number, value_type: float }
+          - { name: gps_lng, label: "GPS longitude (číslo)", widget: number, value_type: float }
           - { name: phone, label: "Telefon", widget: string }
           - { name: email, label: "E-mail", widget: string }
+          - { name: maintenance_mode, label: "Maintenance mode (stellplatz se připravuje)", widget: boolean, default: true }
           - name: address
             label: "Adresa"
             widget: object
@@ -29,6 +32,7 @@ collections:
             label: "Hero sekce"
             widget: object
             fields:
+              - { name: image, label: "Hlavní fotka (hero)", widget: image, required: false }
               - name: cs
                 label: "Česky"
                 widget: object
@@ -41,6 +45,12 @@ collections:
                 fields:
                   - { name: title, label: "Title", widget: string }
                   - { name: subtitle, label: "Subtitle", widget: string }
+          - name: gallery
+            label: "Fotogalerie"
+            widget: list
+            fields:
+              - { name: image, label: "Fotka", widget: image }
+              - { name: alt, label: "Popis fotky", widget: string, required: false }
           - name: about
             label: "O nás"
             widget: object
