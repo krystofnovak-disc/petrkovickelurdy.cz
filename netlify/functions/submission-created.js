@@ -82,7 +82,3 @@ export default async (req) => {
 
   return new Response('OK', { status: 200 });
 };
-
-export const config = {
-  path: '/.netlify/functions/submission-created',
-};
