@@ -7,6 +7,7 @@ interface Trip {
   category: string;
   order: number;
   image?: string;
+  mapUrl?: string;
 }
 
 export async function getTrips(lang: Lang): Promise<Trip[]> {
@@ -21,6 +22,7 @@ export async function getTrips(lang: Lang): Promise<Trip[]> {
     category: file.frontmatter.category,
     order: file.frontmatter.order ?? 99,
     image: file.frontmatter.image,
+    mapUrl: file.frontmatter.mapUrl,
   }));
 
   return trips.sort((a, b) => a.order - b.order);

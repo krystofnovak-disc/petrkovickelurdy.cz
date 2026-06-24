@@ -83,6 +83,7 @@ collections:
       - { name: category, label: "Kategorie", widget: select, options: ["kultura", "příroda", "cyklo", "gastro", "rodiny"] }
       - { name: order, label: "Pořadí", widget: number, value_type: int }
       - { name: image, label: "Fotka", widget: image, required: false }
+      - { name: mapUrl, label: "Google Maps odkaz", widget: string, required: false }
 
   - name: trips-en
     label: "Trips (English)"
@@ -96,3 +97,4 @@ collections:
       - { name: category, label: "Category", widget: select, options: ["culture", "nature", "cycling", "gastro", "families"] }
       - { name: order, label: "Order", widget: number, value_type: int }
       - { name: image, label: "Photo", widget: image, required: false }
+      - { name: mapUrl, label: "Google Maps link", widget: string, required: false }

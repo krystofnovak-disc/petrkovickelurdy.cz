@@ -98,11 +98,25 @@ const otherLangPath = lang === 'cs' ? '/en/' : '/';
       <slot />
     </main>
 
+    <!-- Grant publicity -->
+    <section class="bg-bg py-8 border-t border-bg-dark">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center gap-6">
+        <a href="https://www.msk.cz" target="_blank" rel="noopener" class="shrink-0">
+          <img src="/images/msk-logo.svg" alt="Logo Moravskoslezského kraje" class="h-12" />
+        </a>
+        <p class="text-sm text-text-light text-center sm:text-left">
+          {lang === 'cs'
+            ? 'Projekt „Stellplatz Petřkovické Lurdy" byl spolufinancován z rozpočtu Moravskoslezského kraje.'
+            : 'The "Stellplatz Petřkovické Lurdy" project was co-funded by the Moravian-Silesian Region.'}
+        </p>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-text text-bg py-8">
       <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
         <p>&copy; {new Date().getFullYear()} Stellplatz Petřkovice u Lurdy. {t('footer.rights')}</p>
-        <a href={getLocalizedPath('/provozni-rad', lang)} class="hover:text-primary-light transition-colors">
+        <a href={lang === 'cs' ? '/provozni-rad' : '/en/rules'} class="hover:text-primary-light transition-colors">
           {t('footer.rules')}
         </a>
       </div>
