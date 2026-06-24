@@ -33,8 +33,8 @@
   "gps_lng": 17.9556,
   "gallery": [],
   "directions": {
-    "cs": "Z Nového Jičína směr Palačov, v Petřkovicích odbočte u autobusové zastávky a dále dle navigace k stellplatzu.",
-    "en": "From Nový Jičín head towards Starý Jičín, in Petřkovice follow your GPS to the stellplatz."
+    "cs": "Z Nového Jičína směr Janovice a Petřkovice. V Petřkovicích odbočte u autobusové zastávky a dále dle navigace k stellplatzu.",
+    "en": "From Nový Jičín head towards Janovice and Petřkovice. In Petřkovice turn to the left behind the bus stop and follow your GPS to the stellplatz."
   },
   "address": {
     "line1": "Petřkovice u Starého Jičína",
