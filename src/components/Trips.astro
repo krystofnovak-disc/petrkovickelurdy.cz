@@ -40,22 +40,11 @@ const categoryIcons: Record<string, string> = {
             <h3 class="font-semibold mb-1">{trip.title}</h3>
             <p class="text-text-light text-sm mb-3">{trip.description}</p>
             <div class="flex items-center justify-between text-xs">
-              <span class="flex flex-col gap-0.5 text-secondary">
-                {trip.distanceCar && (
-                  <span class="flex items-center gap-1">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17h.01M16 17h.01M5.2 14h13.6c.56 0 .84 0 1.054-.109a1 1 0 00.437-.437C20.4 13.24 20.4 12.96 20.4 12.4V11l-1.5-4.5c-.2-.6-.3-.9-.483-1.127a1.5 1.5 0 00-.584-.432C17.6 4.8 17.28 4.8 16.64 4.8H7.36c-.64 0-.96 0-1.193.141a1.5 1.5 0 00-.584.432C5.4 5.6 5.3 5.9 5.1 6.5L3.6 11v1.4c0 .56 0 .84.109 1.054a1 1 0 00.437.437C4.36 14 4.64 14 5.2 14z" />
-                    </svg>
-                    {trip.distanceCar}
-                  </span>
-                )}
-                <span class="flex items-center gap-1 text-text-light">
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  {trip.distance}
-                </span>
+              <span class="flex items-center gap-1 text-secondary">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17h.01M16 17h.01M5.2 14h13.6c.56 0 .84 0 1.054-.109a1 1 0 00.437-.437C20.4 13.24 20.4 12.96 20.4 12.4V11l-1.5-4.5c-.2-.6-.3-.9-.483-1.127a1.5 1.5 0 00-.584-.432C17.6 4.8 17.28 4.8 16.64 4.8H7.36c-.64 0-.96 0-1.193.141a1.5 1.5 0 00-.584.432C5.4 5.6 5.3 5.9 5.1 6.5L3.6 11v1.4c0 .56 0 .84.109 1.054a1 1 0 00.437.437C4.36 14 4.64 14 5.2 14z" />
+                </svg>
+                {trip.distanceCar || trip.distance}
               </span>
               {trip.mapUrl && (
                 <a href={trip.mapUrl} target="_blank" rel="noopener" class="text-primary hover:text-primary-dark transition-colors flex items-center gap-1">
