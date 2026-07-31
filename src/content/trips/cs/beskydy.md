@@ -2,7 +2,8 @@
 title: Beskydy – Pustevny a Radhošť
 description: Horské sedlo s unikátními dřevěnými stavbami architekta Dušana
   Jurkoviče. Socha Radegasta na vrcholu.
-distance: 35 km
+distance: "21 km"
+distanceCar: "35 km"
 category: příroda
 order: 5
 image: /images/jiná_turistická_stavba_-_areál_pustevny_-_libušín_a_maměnka02_800px.webp

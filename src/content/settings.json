@@ -4,11 +4,11 @@
     {
       "cs": "Stání / noc",
       "en": "Parking / night",
-      "price": "300 Kč"
+      "price": "380 Kč"
     },
     {
-      "cs": "Elektřina",
-      "en": "Electricity",
+      "cs": "Elektřina / noc",
+      "en": "Electricity / night",
       "price": "100 Kč"
     },
     {

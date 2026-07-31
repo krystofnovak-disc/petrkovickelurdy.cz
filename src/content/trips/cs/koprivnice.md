@@ -2,7 +2,8 @@
 title: Kopřivnice – Tatra muzeum
 description: Technické muzeum s historickými vozy Tatra. Ideální pro rodiny a
   milovníky techniky.
-distance: 10 km
+distance: "15 km"
+distanceCar: "22 km"
 category: kultura
 order: 3
 image: /images/tatra_603-_výstavní_pavilon-_kopřivnice_800px.webp

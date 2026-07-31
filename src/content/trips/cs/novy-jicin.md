@@ -2,7 +2,8 @@
 title: Nový Jičín
 description: Město klobouků s krásným historickým náměstím. Muzeum klobouků a
   příjemné kavárny v centru.
-distance: 6 km
+distance: "7 km"
+distanceCar: "9 km"
 category: kultura
 order: 6
 image: /images/masarykovo_náměstí_-nový_jičín-_-1-_800px.webp

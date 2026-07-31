@@ -4,6 +4,7 @@ interface Trip {
   title: string;
   description: string;
   distance: string;
+  distanceCar?: string;
   category: string;
   order: number;
   image?: string;
@@ -32,6 +33,7 @@ export async function getTrips(lang: Lang): Promise<Trip[]> {
       category: file.frontmatter.category,
       order: file.frontmatter.order ?? 99,
       image: file.frontmatter.image || csImageBySlug.get(slug),
+      distanceCar: file.frontmatter.distanceCar,
       mapUrl: file.frontmatter.mapUrl,
     };
   });

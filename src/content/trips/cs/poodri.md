@@ -2,7 +2,8 @@
 title: Cyklostezky Poodří
 description: Rovinaté cyklostezky podél řeky Odry v chráněné krajinné oblasti.
   Ideální pro rodiny s dětmi.
-distance: 20 km
+distance: "17 km"
+distanceCar: "21 km"
 category: cyklo
 order: 8
 image: /images/ledňáček_na_lovu_800px.webp

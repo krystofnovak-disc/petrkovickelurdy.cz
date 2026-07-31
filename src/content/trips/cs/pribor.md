@@ -2,7 +2,8 @@
 title: Příbor
 description: Rodné město Sigmunda Freuda s historickým centrem a muzeem. Malebné
   moravské městečko.
-distance: 15 km
+distance: "18 km"
+distanceCar: "23 km"
 category: kultura
 order: 7
 image: /images/pribor_-15-_-7170940706-_800px.webp

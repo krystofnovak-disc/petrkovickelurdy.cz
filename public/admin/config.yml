@@ -79,7 +79,8 @@ collections:
     fields:
       - { name: title, label: "Název", widget: string }
       - { name: description, label: "Popis", widget: text }
-      - { name: distance, label: "Vzdálenost", widget: string }
+      - { name: distance, label: "Vzdálenost vzdušnou čarou", widget: string }
+      - { name: distanceCar, label: "Vzdálenost autem", widget: string, required: false }
       - { name: category, label: "Kategorie", widget: select, options: ["kultura", "příroda", "cyklo", "gastro", "rodiny"] }
       - { name: order, label: "Pořadí", widget: number, value_type: int }
       - { name: image, label: "Fotka", widget: image, required: false }
@@ -93,7 +94,8 @@ collections:
     fields:
       - { name: title, label: "Title", widget: string }
       - { name: description, label: "Description", widget: text }
-      - { name: distance, label: "Distance", widget: string }
+      - { name: distance, label: "Distance (straight line)", widget: string }
+      - { name: distanceCar, label: "Distance by car", widget: string, required: false }
       - { name: category, label: "Category", widget: select, options: ["culture", "nature", "cycling", "gastro", "families"] }
       - { name: order, label: "Order", widget: number, value_type: int }
       - { name: image, label: "Photo", widget: image, required: false }
