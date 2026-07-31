@@ -19,7 +19,7 @@ export const ui = {
     'nav.contact': 'Kontakt',
     'nav.rules': 'Provozní řád',
 
-    'hero.title': 'Stellplatz Petřkovice u Lurdy',
+    'hero.title': 'Stellplatz Petřkovické Lurdy',
     'hero.subtitle': 'Klidné parkování pro obytné vozy s výhledem na Beskydy',
     'hero.cta': 'Rezervovat místo',
     'hero.gps': 'GPS: 49.5833° N, 17.9667° E',
@@ -97,7 +97,7 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.rules': 'Rules',
 
-    'hero.title': 'Stellplatz Petřkovice u Lurdy',
+    'hero.title': 'Stellplatz Petřkovické Lurdy',
     'hero.subtitle': 'Peaceful motorhome parking with Beskydy mountain views',
     'hero.cta': 'Book a spot',
     'hero.gps': 'GPS: 49.5833° N, 17.9667° E',

@@ -13,7 +13,7 @@ const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 const { title, description } = Astro.props;
 
-const pageTitle = title ? `${title} | Stellplatz Petřkovice` : 'Stellplatz Petřkovice u Lurdy';
+const pageTitle = title ? `${title} | Stellplatz Petřkovice` : 'Stellplatz Petřkovické Lurdy';
 const pageDescription = description ?? t('hero.subtitle');
 
 const allNavItems = [
@@ -115,7 +115,7 @@ const otherLangPath = lang === 'cs' ? '/en/' : '/';
     <!-- Footer -->
     <footer class="bg-text text-bg py-8">
       <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-        <p>&copy; {new Date().getFullYear()} Stellplatz Petřkovice u Lurdy. {t('footer.rights')}</p>
+        <p>&copy; {new Date().getFullYear()} Stellplatz Petřkovické Lurdy. {t('footer.rights')}</p>
         <a href={lang === 'cs' ? '/provozni-rad' : '/en/rules'} class="hover:text-primary-light transition-colors">
           {t('footer.rules')}
         </a>
