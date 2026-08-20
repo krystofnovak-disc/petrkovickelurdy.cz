@@ -32,7 +32,7 @@ export default async (req) => {
   `.trim();
 
   const resendKey = process.env.RESEND_API_KEY;
-  const ownerEmail = process.env.OWNER_EMAIL || 'info@petrkovickelurdy.cz';
+  const ownerEmail = process.env.OWNER_EMAIL || 'avona.nj@volny.cz';
   const confirmSecret = process.env.CONFIRM_SECRET || '';
 
   // --- 1. Create Google Calendar event (need eventId for confirm link) ---
