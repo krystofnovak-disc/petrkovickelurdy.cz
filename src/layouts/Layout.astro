@@ -32,6 +32,10 @@ const navItems = settings.maintenance_mode
 const otherLang = lang === 'cs' ? 'en' : 'cs';
 const otherLangLabel = languages[otherLang];
 const otherLangPath = lang === 'cs' ? '/en/' : '/';
+
+const canonicalUrl = new URL(Astro.url.pathname, 'https://petrkovickelurdy.cz');
+const csUrl = new URL(lang === 'cs' ? Astro.url.pathname : Astro.url.pathname.replace(/^\/en/, ''), 'https://petrkovickelurdy.cz');
+const enUrl = new URL(lang === 'en' ? Astro.url.pathname : `/en${Astro.url.pathname}`, 'https://petrkovickelurdy.cz');
 ---
 
 <html lang={lang}>
@@ -45,6 +49,10 @@ const otherLangPath = lang === 'cs' ? '/en/' : '/';
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={lang === 'cs' ? 'cs_CZ' : 'en_GB'} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="alternate" hreflang="cs" href={csUrl.href} />
+    <link rel="alternate" hreflang="en" href={enUrl.href} />
+    <link rel="alternate" hreflang="x-default" href={csUrl.href} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
